@@ -1,0 +1,22 @@
+{% extends "base.html" %} {% block title %} Uploaded Files {% endblock %} {%
+block content %}
+<h1>Uploaded Files</h1>
+
+<ul>
+  {% for upload in uploads %}
+  <li>
+    <strong>{{ upload.file.name }}</strong>
+    <small>Uploaded: {{ upload.uploaded_at }}</small>
+    {% if upload.schema_match %}
+    <span class="badge badge-success">Schema Matched</span>
+    {% endif %}
+    <a href="{% url 'retrieve_content' upload.id %}">View Content</a>
+    <a href="{% url 'modify_content' upload.id %}">Modify Content</a>
+  </li>
+  {% empty %}
+  <p>No files uploaded yet.</p>
+  {% endfor %}
+</ul>
+
+<a href="{% url 'upload' %}">Upload New File</a>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% block title %} Modify File Content {% endblock %}
+{% block content %}
+<h1>Modify File Content</h1>
+
+<p>File: {{ pk }}</p>
+
+<form method="post">
+  {% csrf_token %}
+  <label for="new_columns">Enter new column names:</label>
+  <textarea id="new_columns" name="new_columns" rows="4" cols="50"></textarea>
+  <br /><br />
+  <button type="submit">Update Column Names</button>
+</form>
+
+<a href="{% url 'retrieve_content' pk %}">Back to Content</a>
+{% endblock %}
